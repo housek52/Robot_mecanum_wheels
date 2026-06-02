@@ -29,12 +29,15 @@ void loop() {
   
   if(t>500+t_last){
     Serial.print(c);
-    BT.print(c);
+    //BT.print(c);
     t_last = t;
   }
 
-  if(BT.available()){
-    c = BT.read();
+  while(BT.available()){
+    char new_c = BT.read();
+    if(new_c != '\n' && new_c !=  '\r'){
+      c = new_c;
+    }
   }
 
   switch (c)
